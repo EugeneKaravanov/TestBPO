@@ -1,0 +1,40 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "Calculator";
+
+service GRPCService 
+{
+  rpc GetSum (RequestGRPC) returns (AnswerGRPC);
+  rpc GetSubtraction (RequestGRPC) returns (AnswerGRPC);
+  rpc GetMultiplication (RequestGRPC) returns (AnswerGRPC);
+  rpc GetDivision (RequestGRPC) returns (AnswerGRPC);
+  rpc GetRootExtraction (RequestGRPC) returns (AnswerGRPC);
+  rpc GetExponentiation (RequestGRPC) returns (AnswerGRPC);
+}
+
+message RequestGRPC
+{
+  int32 first_number = 1;
+  int32 second_number = 2;
+}
+
+message AnswerGRPC
+{
+    int32 first_number = 1;
+    int32 second_number = 2;
+    int32 result = 3;
+    OperationTypeGRPC type = 4;
+    bool isSuccess = 5;
+    string message = 6;
+}
+
+enum OperationTypeGRPC 
+{
+    SUM = 0;
+    SUBSTRACTION = 1;
+    MULTIPLICATION = 2;
+    DIVISION = 3;
+    ROOTEXTRACTION = 4;
+    EXPONENTIATION = 5;
+    UNKNOWN = 6;
+}
